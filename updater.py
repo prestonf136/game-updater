@@ -3,6 +3,8 @@ import zipfile
 from pyunpack import Archive
 import os
 
+print("helloworld")
+
 uvars = {
     "main":"http://127.0.0.1:8000",
     "fallback":"http://127.0.0.1:8000",
