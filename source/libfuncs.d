@@ -1,6 +1,7 @@
 module libfuncs;
 
 import std.net.curl, std.stdio, std.process;
+import std.file : mkdir;
 
 import core.thread;
 bool CheckVers(string currentves) {
@@ -15,10 +16,9 @@ bool CheckVers(string currentves) {
 
 //TODO:downloads
 void DownloadFiles() {
-    download("https://httpbin.org/get", "/tmp/downloaded");
+    download("https://httpbin.org/get", "./clientran");
 }
 //TODO: play files
 void PlayFiles(){
-    writeln("files playing");
-    auto pid = spawnProcess("/tmp/client");
+    auto pid = spawnProcess("./clientran");
 }

@@ -5,8 +5,14 @@ import dawait;
 
 import gtk.Main;
 import gtk.Builder;
+
+import std.conv;
+import std.process: ProcessException;
+import core.thread : Thread,dur;
+
 import gtk.Window;
 import gtk.Button;
+import gtk.Label;
 
 string serversion =  "v0.0.1";
 
@@ -24,6 +30,7 @@ void main(string[] args)
 
 	//TODO: if statement to change button to play or download
 	Button btn = cast(Button)builder.getObject("Button");
+	
 
 	if (CheckVers(serversion)) {
 		btn.setLabel("Play!");
@@ -40,16 +47,23 @@ extern(C) void on_Window_destroy() {
 //TODO: download or run file depending on version number
 extern(C) void on_Button_clicked(GtkButton *button) {
 	Button b = new Button(button);
-	
 	if (b.getLabel() == "Play!") {
-		PlayFiles();
-		
+		try {
+			PlayFiles();
+		} catch(ProcessException s) {
+
+			b.setLabel("error: please redownload");
+		}
 	} else {
-		b.setSensitive(false);
-		startScheduler({
-			DownloadFiles();
-		});
-		b.setLabel("Play!");
-		b.setSensitive(true);
+		try {
+			b.setSensitive(false);
+			startScheduler({
+				DownloadFiles();
+			});
+			b.setLabel("Play!");
+			b.setSensitive(true);
+		} finally {
+			//poop;
+		}
 	}
 }
