@@ -1,0 +1,9 @@
+{
+	"fileVersion": 1,
+	"versions": {
+		"bindbc-loader": "0.2.1",
+		"bindbc-raylib": "0.1.0",
+		"dawait": "0.1.1",
+		"gtk-d": "3.9.0"
+	}
+}
