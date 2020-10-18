@@ -1,7 +1,7 @@
 module libfuncs;
-import std.stdio;
 
-import std.net.curl, std.stdio;
+import std.net.curl, std.stdio, std.process;
+
 import core.thread;
 bool CheckVers(string currentves) {
     auto content = get("dlang.org");
@@ -15,10 +15,10 @@ bool CheckVers(string currentves) {
 
 //TODO:downloads
 void DownloadFiles() {
-    Thread.sleep(dur!("seconds")( 5 ));
-    writeln("you actually waited 5 seconds noob");
+    download("https://httpbin.org/get", "/tmp/downloaded");
 }
 //TODO: play files
 void PlayFiles(){
     writeln("files playing");
+    auto pid = spawnProcess("/tmp/client");
 }

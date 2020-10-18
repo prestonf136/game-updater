@@ -49,6 +49,7 @@ extern(C) void on_Button_clicked(GtkButton *button) {
 		startScheduler({
 			DownloadFiles();
 		});
+		b.setLabel("Play!");
 		b.setSensitive(true);
 	}
 }
